@@ -13,3 +13,6 @@ fun Random.nextString(length: Int = nextInt(2, 20)): String {
         .map { alphabet.random() }
         .joinToString("")
 }
+
+fun Random.nextNullableString(): String? =
+    listOf(null, nextString()).random()
