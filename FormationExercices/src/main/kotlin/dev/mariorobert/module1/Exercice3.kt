@@ -5,7 +5,7 @@ import dev.mariorobert.tools.nextString
 import kotlin.random.Random
 
 /**
- * Écrire une classe MessageValidator prenant en paramètre un booléen strictMode.
+ * Écrivez une classe MessageValidator prenant en paramètre un booléen strictMode.
  * Cette classe doit contenir une fonction isMessageValid prenant en paramètre une String message
  * et retournant un booléen.
  * - Si strictMode est false, isMessageValid doit retourner true si message contient moins de 100 caractères.
