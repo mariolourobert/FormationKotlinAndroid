@@ -1,9 +1,5 @@
 package dev.mariorobert.module1
 
-import dev.mariorobert.tools.containsAnyOf
-import dev.mariorobert.tools.nextString
-import kotlin.random.Random
-
 /**
  * Écrivez une classe MessageValidator prenant en paramètre un booléen strictMode.
  * Cette classe doit contenir une fonction isMessageValid prenant en paramètre une String message

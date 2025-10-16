@@ -1,7 +1,5 @@
 package dev.mariorobert.module1
 
-import dev.mariorobert.tools.containsAnyOf
-
 /**
  * Step 1 :
  * Créez une enum UserType avec les valeurs PREMIUM et FREE
