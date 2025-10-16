@@ -2,7 +2,7 @@ package dev.mariorobert.module1
 
 /**
  * Step 1 :
- * Reprenez votre MessageValidator de l'exercice précédent (Exercice3).
+ * Reprenez votre MessageValidator de l'ExerciceMessageValidator.
  * Séparez la logique de validation dans deux classes différentes, qui implémentent la même interface.
  *
  * Step 2 :

@@ -6,7 +6,7 @@ package dev.mariorobert.module1
  * Créez une data class User avec un champ name (String) et champ type (UserType)
  *
  * Step 2 :
- * Reprenez votre MessageValidator de l'Exercice3.
+ * Reprenez votre MessageValidator de l'ExerciceMessageValidator.
  * Modifiez la fonction isMessageValid pour qu'elle prenne également en paramètre un User optionnel.
  * Si on est sûr que l'utilisateur est de type PREMIUM, on applique les règles non strictes.
  */
