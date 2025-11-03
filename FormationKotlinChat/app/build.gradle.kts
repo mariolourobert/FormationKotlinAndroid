@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.formationkotlinchat"
+    namespace = "dev.mariorobert.formationkotlinchat"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.formationkotlinchat"
+        applicationId = "dev.mariorobert.formationkotlinchat"
         minSdk = 28
         targetSdk = 35
         versionCode = 1

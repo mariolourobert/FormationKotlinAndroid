@@ -1,4 +1,4 @@
-package com.example.formationkotlinchat.tools
+package dev.mariorobert.formationkotlinchat.tools
 
 import kotlin.random.Random
 

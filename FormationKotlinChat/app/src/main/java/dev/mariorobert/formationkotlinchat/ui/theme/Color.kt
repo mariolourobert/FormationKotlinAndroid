@@ -1,4 +1,4 @@
-package com.example.formationkotlinchat.ui.theme
+package dev.mariorobert.formationkotlinchat.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
