@@ -1,4 +1,4 @@
-package dev.mariorobert.formationkotlinchat.ui.theme
+package dev.mariorobert.formationkotlinchat.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

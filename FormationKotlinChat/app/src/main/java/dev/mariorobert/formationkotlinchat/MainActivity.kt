@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
-import dev.mariorobert.formationkotlinchat.ui.theme.FormationKotlinChatTheme
+import dev.mariorobert.formationkotlinchat.presentation.theme.FormationKotlinChatTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
