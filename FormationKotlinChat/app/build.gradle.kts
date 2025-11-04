@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.koin.androidx.compose)
     implementation(libs.koin.androidx.compose.navigation)
     implementation(libs.coroutines)
+    implementation(libs.immutable.collections)
 
     implementation(project(":tools"))
 
