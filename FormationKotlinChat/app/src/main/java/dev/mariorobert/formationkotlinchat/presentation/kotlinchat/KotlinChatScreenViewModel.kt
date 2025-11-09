@@ -2,14 +2,14 @@ package dev.mariorobert.formationkotlinchat.presentation.kotlinchat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.mariorobert.formationkotlinchat.data.MessagesRepository
+import dev.mariorobert.formationkotlinchat.data.IMessagesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class KotlinChatScreenViewModel(
-    private val repository: MessagesRepository,
+    private val repository: IMessagesRepository,
 ) : ViewModel() {
 
     val uiState = MutableStateFlow<KotlinChatScreenUiState>(

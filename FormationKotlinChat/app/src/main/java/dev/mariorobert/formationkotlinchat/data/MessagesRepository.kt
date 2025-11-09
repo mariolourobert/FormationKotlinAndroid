@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.time.LocalDateTime
 
-class MessagesRepository {
+class MessagesRepository : IMessagesRepository {
     private val initialMessages = listOf(
         MessageDataModel(
             id = "0",
@@ -30,9 +30,9 @@ class MessagesRepository {
     private val _messages = MutableStateFlow(
         initialMessages,
     )
-    val messages: StateFlow<List<MessageDataModel>> = _messages.asStateFlow()
+    override val messages: StateFlow<List<MessageDataModel>> = _messages.asStateFlow()
 
-    fun sendMessage(
+    override fun sendMessage(
         authorName: String,
         content: String,
     ) {
