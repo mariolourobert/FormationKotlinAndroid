@@ -20,18 +20,32 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SignUpScreen() {
+    val viewModel = koinViewModel<SignUpScreenViewModel>()
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    PrivateSignUpScreen(
+        uiState = uiState,
+        onUsernameChange = viewModel::onUsernameChange,
+    )
+}
+
+@Composable
+private fun PrivateSignUpScreen(
+    uiState: SignUpScreenUiState,
+    onUsernameChange: (String) -> Unit,
+) {
     Column(
         horizontalAlignment = Alignment.End,
         modifier = Modifier.fillMaxSize(),
@@ -61,10 +75,9 @@ fun SignUpScreen() {
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp),
                 textAlign = TextAlign.Center,
             )
-            var currentUsername: String by remember { mutableStateOf("") }
             OutlinedTextField(
-                value = currentUsername,
-                onValueChange = { currentUsername = it },
+                value = uiState.currentUsername,
+                onValueChange = onUsernameChange,
                 modifier = Modifier.fillMaxWidth()
                     .padding(horizontal = 14.dp)
                     .padding(top = 16.dp),
@@ -105,5 +118,10 @@ fun SignUpScreen() {
 @Preview(showBackground = true)
 @Composable
 fun SignUpScreenPreview() {
-    SignUpScreen()
+    PrivateSignUpScreen(
+        uiState = SignUpScreenUiState(
+            currentUsername = "Mario",
+        ),
+        onUsernameChange = { },
+    )
 }
