@@ -9,6 +9,8 @@ class SignUpScreenViewModel : ViewModel() {
     private val _uiState = MutableStateFlow<SignUpScreenUiState>(
         SignUpScreenUiState(
             currentUsername = "",
+            isCheckboxChecked = false,
+            isSignUpButtonEnabled = false,
         )
     )
     val uiState = _uiState.asStateFlow()
@@ -17,7 +19,29 @@ class SignUpScreenViewModel : ViewModel() {
         _uiState.update {
             it.copy(
                 currentUsername = newUsername,
+                isSignUpButtonEnabled = isSignUpButtonEnabled(
+                    username = newUsername,
+                    isCheckboxChecked = it.isCheckboxChecked,
+                ),
             )
         }
     }
+
+    fun onCheckboxToggle(isChecked: Boolean) {
+        _uiState.update {
+            it.copy(
+                isCheckboxChecked = isChecked,
+                isSignUpButtonEnabled = isSignUpButtonEnabled(
+                    username = it.currentUsername,
+                    isCheckboxChecked = isChecked,
+                ),
+            )
+        }
+    }
+
+    private fun isSignUpButtonEnabled(
+        username: String,
+        isCheckboxChecked: Boolean,
+    ): Boolean =
+        username.isNotBlank() && isCheckboxChecked
 }

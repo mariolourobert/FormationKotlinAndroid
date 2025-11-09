@@ -38,6 +38,7 @@ fun SignUpScreen() {
     PrivateSignUpScreen(
         uiState = uiState,
         onUsernameChange = viewModel::onUsernameChange,
+        onCheckboxToggle = viewModel::onCheckboxToggle,
     )
 }
 
@@ -45,6 +46,7 @@ fun SignUpScreen() {
 private fun PrivateSignUpScreen(
     uiState: SignUpScreenUiState,
     onUsernameChange: (String) -> Unit,
+    onCheckboxToggle: (Boolean) -> Unit,
 ) {
     Column(
         horizontalAlignment = Alignment.End,
@@ -90,8 +92,8 @@ private fun PrivateSignUpScreen(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Checkbox(
-                    checked = false,
-                    onCheckedChange = {}
+                    checked = uiState.isCheckboxChecked,
+                    onCheckedChange = onCheckboxToggle,
                 )
                 Text("I agree to the Terms and Conditions")
             }
@@ -107,6 +109,7 @@ private fun PrivateSignUpScreen(
                 }
                 Button(
                     onClick = { },
+                    enabled = uiState.isSignUpButtonEnabled,
                 ) {
                     Text("Sign Up")
                 }
@@ -121,7 +124,24 @@ fun SignUpScreenPreview() {
     PrivateSignUpScreen(
         uiState = SignUpScreenUiState(
             currentUsername = "Mario",
+            isCheckboxChecked = true,
+            isSignUpButtonEnabled = true,
         ),
         onUsernameChange = { },
+        onCheckboxToggle = { },
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SignUpScreenPreviewEmpty() {
+    PrivateSignUpScreen(
+        uiState = SignUpScreenUiState(
+            currentUsername = "",
+            isCheckboxChecked = false,
+            isSignUpButtonEnabled = false,
+        ),
+        onUsernameChange = { },
+        onCheckboxToggle = { },
     )
 }
