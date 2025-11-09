@@ -19,6 +19,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -57,9 +61,10 @@ fun SignUpScreen() {
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp),
                 textAlign = TextAlign.Center,
             )
+            var currentUsername: String by remember { mutableStateOf("") }
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = currentUsername,
+                onValueChange = { currentUsername = it },
                 modifier = Modifier.fillMaxWidth()
                     .padding(horizontal = 14.dp)
                     .padding(top = 16.dp),
