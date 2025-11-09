@@ -11,6 +11,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import dev.mariorobert.formationkotlinchat.presentation.kotlinchat.KotlinChatScreen
+import dev.mariorobert.formationkotlinchat.presentation.signup.SignUpScreen
 import dev.mariorobert.formationkotlinchat.presentation.theme.FormationKotlinChatTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(innerPadding)
                     ) {
-                        KotlinChatScreen()
+                        SignUpScreen()
                     }
                 }
             }
