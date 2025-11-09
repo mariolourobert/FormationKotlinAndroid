@@ -22,6 +22,7 @@ dependencyResolutionManagement {
 rootProject.name = "FormationKotlinChat"
 include(
     ":app",
-    ":tools"
+    ":tools",
+    ":data",
 )
  

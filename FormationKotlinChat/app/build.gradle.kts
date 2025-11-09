@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.coroutines)
     implementation(libs.immutable.collections)
 
+    implementation(project(":data"))
     implementation(project(":tools"))
 
     testImplementation(libs.junit)

@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.time.LocalDateTime
+import kotlin.collections.plus
 
 class MessagesRepository : IMessagesRepository {
     private val initialMessages = listOf(
