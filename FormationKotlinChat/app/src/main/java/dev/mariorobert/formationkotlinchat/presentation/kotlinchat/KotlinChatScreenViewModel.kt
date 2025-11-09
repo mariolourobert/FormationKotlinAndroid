@@ -8,8 +8,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class KotlinChatScreenViewModel : ViewModel() {
-    private val repository = MessagesRepository()
+class KotlinChatScreenViewModel(
+    private val repository: MessagesRepository,
+) : ViewModel() {
 
     val uiState = MutableStateFlow<KotlinChatScreenUiState>(
         KotlinChatScreenUiState(
