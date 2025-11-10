@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(innerPadding)
                     ) {
-                        SignUpScreen()
+                        KotlinChatScreen()
                     }
                 }
             }

@@ -3,10 +3,13 @@ package dev.mariorobert.formationkotlinchat.presentation.kotlinchat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.mariorobert.formationkotlinchat.data.IMessagesRepository
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import java.time.format.DateTimeFormatter
 
 class KotlinChatScreenViewModel(
     private val repository: IMessagesRepository,
@@ -14,19 +17,27 @@ class KotlinChatScreenViewModel(
 
     val uiState = MutableStateFlow<KotlinChatScreenUiState>(
         KotlinChatScreenUiState(
-            messages = emptyList(),
+            messages = persistentListOf(),
         )
     )
+
+    private val dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM HH:mm")
 
     init {
         viewModelScope.launch(Dispatchers.Default) {
             repository.messages.collect {
-                val messagesAsString = it.map { messageDataModel ->
-                    messageDataModel.content
+                val messages = it
+                    .map { messageDataModel ->
+                    KotlinChatScreenUiState.MessageUiState(
+                        id = messageDataModel.id,
+                        authorName = messageDataModel.authorName,
+                        content = messageDataModel.content,
+                        formattedCreatedAt = messageDataModel.createdAt.format(dateTimeFormatter),
+                    )
                 }
                 uiState.emit(
                     KotlinChatScreenUiState(
-                        messages = messagesAsString,
+                        messages = messages.toPersistentList(),
                     )
                 )
             }
