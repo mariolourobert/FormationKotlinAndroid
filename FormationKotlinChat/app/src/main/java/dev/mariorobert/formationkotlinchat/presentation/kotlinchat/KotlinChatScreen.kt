@@ -1,9 +1,8 @@
 package dev.mariorobert.formationkotlinchat.presentation.kotlinchat
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,12 +16,13 @@ fun KotlinChatScreen(
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
 
-    LazyColumn(
+    Column(
         modifier = Modifier.fillMaxSize(),
     ) {
-        items(uiState.messages) {
+        uiState.messages.forEach {
             Text(
-                modifier = Modifier.padding(all = 8.dp),
+                modifier = Modifier
+                    .padding(all = 8.dp),
                 text = it,
             )
         }
