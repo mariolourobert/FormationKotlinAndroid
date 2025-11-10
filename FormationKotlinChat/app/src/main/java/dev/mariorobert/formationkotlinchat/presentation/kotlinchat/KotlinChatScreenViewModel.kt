@@ -27,14 +27,15 @@ class KotlinChatScreenViewModel(
         viewModelScope.launch(Dispatchers.Default) {
             repository.messages.collect {
                 val messages = it
+                    .sortedByDescending { it.createdAt }
                     .map { messageDataModel ->
-                    KotlinChatScreenUiState.MessageUiState(
-                        id = messageDataModel.id,
-                        authorName = messageDataModel.authorName,
-                        content = messageDataModel.content,
-                        formattedCreatedAt = messageDataModel.createdAt.format(dateTimeFormatter),
-                    )
-                }
+                        KotlinChatScreenUiState.MessageUiState(
+                            id = messageDataModel.id,
+                            authorName = messageDataModel.authorName,
+                            content = messageDataModel.content,
+                            formattedCreatedAt = messageDataModel.createdAt.format(dateTimeFormatter),
+                        )
+                    }
                 uiState.emit(
                     KotlinChatScreenUiState(
                         messages = messages.toPersistentList(),

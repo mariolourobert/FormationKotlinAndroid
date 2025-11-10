@@ -29,6 +29,7 @@ fun KotlinChatScreen(
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
+        reverseLayout = true,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(
