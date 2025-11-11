@@ -19,12 +19,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
+
+@Serializable
+data class KotlinChatScreenRoute(val username: String)
 
 @Composable
 fun KotlinChatScreen(
-    viewModel: KotlinChatScreenViewModel = koinViewModel(),
+    username: String,
 ) {
+    val viewModel = koinViewModel<KotlinChatScreenViewModel>()
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
 
     LazyColumn(

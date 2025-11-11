@@ -27,10 +27,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
+import dev.mariorobert.formationkotlinchat.presentation.kotlinchat.KotlinChatScreenRoute
+import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
+@Serializable
+object SignUpScreenRoute
+
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(navController: NavController) {
     val viewModel = koinViewModel<SignUpScreenViewModel>()
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -39,6 +45,11 @@ fun SignUpScreen() {
         uiState = uiState,
         onUsernameChange = viewModel::onUsernameChange,
         onCheckboxToggle = viewModel::onCheckboxToggle,
+        onSignUpClick = {
+            navController.navigate(
+                KotlinChatScreenRoute(username = it)
+            )
+        }
     )
 }
 
@@ -47,6 +58,7 @@ private fun PrivateSignUpScreen(
     uiState: SignUpScreenUiState,
     onUsernameChange: (String) -> Unit,
     onCheckboxToggle: (Boolean) -> Unit,
+    onSignUpClick: (String) -> Unit,
 ) {
     Column(
         horizontalAlignment = Alignment.End,
@@ -108,7 +120,9 @@ private fun PrivateSignUpScreen(
                     Text("Cancel")
                 }
                 Button(
-                    onClick = { },
+                    onClick = {
+                        onSignUpClick(uiState.currentUsername)
+                    },
                     enabled = uiState.isSignUpButtonEnabled,
                 ) {
                     Text("Sign Up")
@@ -129,6 +143,7 @@ fun SignUpScreenPreview() {
         ),
         onUsernameChange = { },
         onCheckboxToggle = { },
+        onSignUpClick = { },
     )
 }
 
@@ -143,5 +158,6 @@ fun SignUpScreenPreviewEmpty() {
         ),
         onUsernameChange = { },
         onCheckboxToggle = { },
+        onSignUpClick = { },
     )
 }
