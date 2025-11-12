@@ -39,7 +39,6 @@ class KotlinChatScreenViewModel(
         viewModelScope.launch(Dispatchers.Default) {
             repository.messages.collect {
                 val messages = it
-                    .sortedByDescending { it.createdAt }
                     .map { messageDataModel ->
                         KotlinChatScreenUiState.MessageUiState(
                             id = messageDataModel.id,
