@@ -1,9 +1,9 @@
 package dev.mariorobert.formationkotlinchat.data
 
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 
 interface IMessagesRepository {
-    val messages: StateFlow<List<MessageDataModel>>
+    val messages: Flow<List<MessageDataModel>>
 
     suspend fun sendMessage(
         authorName: String,
