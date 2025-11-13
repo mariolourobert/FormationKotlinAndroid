@@ -32,7 +32,7 @@ class MessagesRepository : IMessagesRepository {
     )
     override val messages: StateFlow<List<MessageDataModel>> = _messages.asStateFlow()
 
-    override fun sendMessage(
+    override suspend fun sendMessage(
         authorName: String,
         content: String,
     ) {
