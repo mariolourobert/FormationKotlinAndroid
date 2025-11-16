@@ -36,6 +36,8 @@ class KotlinChatScreenViewModel(
     private val dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM HH:mm")
 
     init {
+        repository.startMessagesPolling(viewModelScope)
+
         viewModelScope.launch(Dispatchers.Default) {
             repository.messages
                 .collect {

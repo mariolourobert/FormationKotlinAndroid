@@ -1,6 +1,8 @@
 package dev.mariorobert.formationkotlinchat.data
 
 import androidx.room.Room
+import dev.mariorobert.formationkotlinchat.data.api.MessagesApi
+import dev.mariorobert.formationkotlinchat.data.api.MessagesApiFactory
 import dev.mariorobert.formationkotlinchat.data.database.KotlinChatLocalDatabase
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.bind
@@ -17,5 +19,9 @@ val dataModule = module {
     }
     factory {
         get<KotlinChatLocalDatabase>().getMessageDao()
+    }
+    factoryOf(::MessagesApiFactory)
+    single<MessagesApi> {
+        get<MessagesApiFactory>().build()
     }
 }

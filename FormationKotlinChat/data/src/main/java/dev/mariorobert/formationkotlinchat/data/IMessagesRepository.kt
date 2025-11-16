@@ -1,5 +1,6 @@
 package dev.mariorobert.formationkotlinchat.data
 
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
 interface IMessagesRepository {
@@ -8,5 +9,9 @@ interface IMessagesRepository {
     suspend fun sendMessage(
         authorName: String,
         content: String,
+    )
+
+    fun startMessagesPolling(
+        coroutineScope: CoroutineScope,
     )
 }

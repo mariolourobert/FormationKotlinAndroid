@@ -34,4 +34,5 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlinx)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.logging.interceptor)
 }
