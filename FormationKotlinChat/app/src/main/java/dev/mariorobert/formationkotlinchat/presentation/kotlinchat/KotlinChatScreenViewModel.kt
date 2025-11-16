@@ -37,22 +37,26 @@ class KotlinChatScreenViewModel(
 
     init {
         viewModelScope.launch(Dispatchers.Default) {
-            repository.messages.collect {
-                val messages = it
-                    .map { messageDataModel ->
-                        KotlinChatScreenUiState.MessageUiState(
-                            id = messageDataModel.id,
-                            authorName = messageDataModel.authorName,
-                            content = messageDataModel.content,
-                            formattedCreatedAt = messageDataModel.createdAt.format(dateTimeFormatter),
+            repository.messages
+                .collect {
+                    val messages = it
+                        .map { messageDataModel ->
+                            KotlinChatScreenUiState.MessageUiState(
+                                id = messageDataModel.id,
+                                authorName = messageDataModel.authorName,
+                                content = messageDataModel.content,
+                                formattedCreatedAt = messageDataModel.createdAt.format(dateTimeFormatter),
+                            )
+                        }
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            messages = messages.toPersistentList(),
                         )
                     }
-                _uiState.update { currentState ->
-                    currentState.copy(
-                        messages = messages.toPersistentList(),
+                    _events.emit(
+                        Events.ScrollDown,
                     )
                 }
-            }
         }
     }
 
@@ -89,12 +93,13 @@ class KotlinChatScreenViewModel(
                 )
             }
             _events.emit(
-                Events.ScrollDown,
+                Events.CloseKeyboard,
             )
         }
     }
 
     sealed class Events {
         data object ScrollDown : Events()
+        data object CloseKeyboard : Events()
     }
 }

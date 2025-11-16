@@ -25,6 +25,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -41,6 +42,7 @@ fun KotlinChatScreen(
 ) {
     val viewModel = koinViewModel<KotlinChatScreenViewModel>()
     val lazyListState = rememberLazyListState()
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     LaunchedEffect(Unit) {
         viewModel.init(username = username)
@@ -50,6 +52,10 @@ fun KotlinChatScreen(
         when (event) {
             is KotlinChatScreenViewModel.Events.ScrollDown -> {
                 lazyListState.animateScrollToItem(0)
+            }
+
+            KotlinChatScreenViewModel.Events.CloseKeyboard -> {
+                keyboardController?.hide()
             }
         }
     }
