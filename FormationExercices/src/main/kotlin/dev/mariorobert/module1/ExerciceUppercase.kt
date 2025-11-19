@@ -7,11 +7,10 @@ import kotlin.random.Random
  * Step 1 :
  * Écrivez une fonction qui print "Uppercase!!" si originalString commence par une majuscule.
  * Sinon printez "Lowercase!!"
+ * Les fonctions .first() sur une string et .isUpperCase() sur un char peuvent être utiles
  *
  * Step 2 :
- * Laissez l'analayse dans la nouvelle fonction mais printez dans la fonction main.
- *
- * Les fonctions .first() sur une string et .isUpperCase() sur un char peuvent être utiles
+ * Laissez l'analyse dans la nouvelle fonction mais printez dans la fonction main.
  */
 fun main(args: Array<String>) {
     val originalString = Random.nextString()
